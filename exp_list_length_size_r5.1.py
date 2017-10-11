@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
 # This is the experiment of code fragment 5.1 of book data structures and
 # algorithms in python.
 
-# -*- coding: utf-8 -*-
 import sys
 
 try:

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # This is the exercise of r5.4
 # make the __getitem__ method of DynamicArray support negtive indices
 

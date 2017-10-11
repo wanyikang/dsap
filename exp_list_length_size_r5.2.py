@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
 # This is my answer of exercise r5.2
 # output the value of k at which the existing capacity of array is exhausted
 
-# -*- coding: utf-8 -*-
 import sys
 
 try:

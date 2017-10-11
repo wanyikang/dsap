@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 # the exercise of r5.3
 
-# -*- coding: utf-8 -*-
 import sys
 
 try:

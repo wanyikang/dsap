@@ -1,9 +1,9 @@
+# -*- coding: utf-8 -*-
 # This the excise of r5.7
 # array A contains integers from 1 to n-1, inclusive, with exactly on repeated,
 # this algorithm is to find the integer in A that is repeated. And the running
 # time of the algorithm is O(n).
 
-# -*- coding: utf-8 -*-
 import random
 # array length
 arr_len = 10
