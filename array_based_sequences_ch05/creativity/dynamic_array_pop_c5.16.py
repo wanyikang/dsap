@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-# This is the exercise of r5.6
-# an improved implementation of the insert method, so that, in the case of
-# a resize, the elements are shifted into their final position during that
-# operation, thereby avoiding the subsequent shifting.
+# This is the exercise of r5.16
+# implement pop method that shrinks the capacity, N, of the array by half any
+# time the number of elements in the array goes below N/4.
 
 import ctypes                                      # provides low-level arrays
 
@@ -34,24 +33,19 @@ class DynamicArray:
         self._A[self._n] = obj
         self._n += 1
 
+    def pop(self):
+        """ Pop the last element of the dynamic array"""
+        if self._n < self._capacity / 4:
+            self._resize(self._capacity // 2)
+        self._A[self._n - 1] = None
+        self._n -= 1
+
     def _resize(self, c):                            # nonpublic utitity
         """Resize internal array to capacity c."""
         B = self._make_array(c)                        # new (bigger) array
         for k in range(self._n):                       # for each existing value
             B[k] = self._A[k]
         self._A = B                                    # use the bigger array
-        self._capacity = c
-
-    def _resize_with_shifting(self, c, k):
-        """ Resize internal array to capacity c and shift the elements that
-        after index k rightward one element.
-        """
-        B = self._make_array(c)
-        for i in range(k):
-            B[i] = self._A[i]
-        for i in range(k, self._n, 1):
-            B[i + 1] = self._A[i]
-        self._A = B
         self._capacity = c
 
     def _make_array(self, c):                        # nonpublic utitity
@@ -61,14 +55,11 @@ class DynamicArray:
     def insert(self, k, value):
         """Insert value at index k, shifting subsequent values rightward."""
         # (for simplicity, we assume 0 <= k <= n in this verion)
-        if self._n == self._capacity:
-            # not enough room, so double capacity
-            self._resize_with_shifting(2 * self._capacity, k)
-        else:
-            # enough room, so rightward one element
-            for i in range(self._n, k, -1):
-                self._A[i] = self._A[i-1]
-        self._A[k] = value  # store newest element
+        if self._n == self._capacity:                  # not enough room
+            self._resize(2 * self._capacity)             # so double capacity
+        for j in range(self._n, k, -1):                # shift rightmost first
+            self._A[j] = self._A[j-1]
+        self._A[k] = value                             # store newest element
         self._n += 1
 
     def remove(self, value):
@@ -90,8 +81,8 @@ if __name__ == "__main__":
         da.append(i)
     print("da[0]:{0}; da[29]:{1}; da[-1]:{2}; da[-30]:{3}".format(
         da[0], da[29], da[-1], da[-30]))
-
-    for i in range(10):
-        da.insert(i, i + 30)
-    print('len:{0}; da:[{1}]'.format(len(da), ', '.join(map(str, da))))
-
+    for i in range(30):
+        print(''.join(map(str, da)))
+        da.pop()
+    print('------')
+    print(''.join(map(str, da)))
