@@ -18,12 +18,13 @@ def func_test(n):
     for i in range(n):
         a.pop()
 
+tnum = 10
 try:
     for i in range(1, 7):
         cnt = 10 ** i
         func_s = "func_test(" + str(cnt) + ")"
-        t = timeit.timeit(func_s, setup="from __main__ import func_test", number=1)
-        print("cnt: {0:<10d},  time: {1:<.6f}".format(cnt, t / cnt))
+        t = timeit.timeit(func_s, setup="from __main__ import func_test", number=tnum)
+        print("cnt: {0:<10d},  time: {1:<.6f}".format(cnt, t / cnt / tnum))
 except KeyboardInterrupt:
     print("\n")
     pass
