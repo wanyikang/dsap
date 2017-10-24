@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+# operation         ret     deque
+# add_first(4)      -       [4]
+# add_last(8)       -       [4,8]
+# add_last(9)       -       [4,8,9]
+# add_first(5)      -       [5,4,8,9]
+# back()            9       [5,4,8,9]
+# delete_first()    5       [4,8,9]
+# delete_last()     9       [4,8]
+# add_last(7)       -       [4,8,7]
+# first()           4       [4,8,7]
+# last()            7       [4,8,7]
+# add_last(6)       -       [4,8,7,6]
+# delete_first()    4       [8,7,6]
+# delete_first()    8       [7,6]
