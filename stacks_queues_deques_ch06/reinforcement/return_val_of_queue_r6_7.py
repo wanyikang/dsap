@@ -1,0 +1,20 @@
+# -*- coding: utf-8 -*-
+#   operation       return value    first--Q--last
+#   enqueue(5)      -               [5]
+#   enqueue(3)      -               [5,3]
+#   dequeue()       5               [3]
+#   enqueue(2)      -               [3,2]
+#   enqueue(8)      -               [3,2,8]
+#   dequeue()       3               [2,8]
+#   dequeue()       2               [8]
+#   enqueue(9)      -               [8,9]
+#   enqueue(1)      -               [8,9,1]
+#   dequeue()       8               [9,1]
+#   enqueue(7)      -               [9,1,7]
+#   enqueue(6)      -               [9,1,7,6]
+#   dequeue()       9               [1,7,6]
+#   dequeue()       1               [7,6]
+#   enqueue(4)      -               [7,6,4]
+#   dequeue()       7               [6,4]
+#   dequeue()       6               [4]
+
