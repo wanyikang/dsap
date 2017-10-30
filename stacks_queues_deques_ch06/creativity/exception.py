@@ -7,3 +7,7 @@ class Full(Exception):
     """ Error attempting to access an element from an empty container."""
     pass
 
+class PostfixError(Exception):
+    """ Error postfix expression."""
+    pass
+
