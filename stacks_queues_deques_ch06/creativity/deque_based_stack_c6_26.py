@@ -9,8 +9,8 @@ class Deque(object):
     add_last: O(1)
     delete_first: O(1) amortized
     delete_last: O(1) amortized
-    first:
-    last:
+    first: O(1)
+    last: O(1)
     len: O(1)
     is_empty:O(1)
     """
@@ -18,14 +18,18 @@ class Deque(object):
         self._lstack = ArrayStack()
         self._rstack = ArrayStack()
         self._len = 0
+        self._first = None
+        self._last = None
 
     def add_first(self, e):
         self._lstack.push(e)
         self._len += 1
+        self._first = e
 
     def add_last(self, e):
         self._rstack.push(e)
         self._len += 1
+        self._last = e
 
     def delete_first(self):
         if self._len == 0:
@@ -34,6 +38,11 @@ class Deque(object):
             self._copy_stack(self._rstack, self._lstack)
         first = self._lstack.pop()
         self._len -= 1
+        # update first
+        if len(self._lstack) == 0:
+            self._copy_stack(self._rstack, self._lstack)
+        if self._len > 0:
+            self._first = self._lstack.top()
         return first
 
     def delete_last(self):
@@ -43,21 +52,24 @@ class Deque(object):
             self._copy_stack(self._lstack, self._rstack)
         last = self._rstack.pop()
         self._len -= 1
+        # update last
+        if len(self._rstack) == 0:
+            self._copy_stack(self._lstack, self._rstack)
+        if self._len > 0:
+            self._last = self._rstack.top()
         return last
 
     def first(self):
         if self._len == 0:
             raise Empty('Deque is empty!')
-        elif len(self._lstack) == 0:
-            self._copy_stack(self._rstack, self._lstack)
-        return self._lstack.top()
+        else:
+            return self._first
 
     def last(self):
         if self._len == 0:
             raise Empty('Deque is empty!')
-        elif len(self._rstack) == 0:
-            self._copy_stack(self._lstack, self._rstack)
-        return self._rstack.top()
+        else:
+            return self._last
 
     def _copy_stack(self, src, dst):
         for i in range(len(src)):
