@@ -5,10 +5,11 @@ class ArrayDeque(object):
     """ Deque implementation ueing a python list as underlying storage."""
     DEFAULT_CAPACITY = 10
 
-    def __init__(self):
+    def __init__(self, maxlen=None):
         self._data = [None] * ArrayDeque.DEFAULT_CAPACITY
         self._size = 0
         self._front = 0
+        self._maxlen = maxlen
 
     def __len__(self):
         """ Return the number of elements in the deque."""
@@ -43,6 +44,8 @@ class ArrayDeque(object):
 
     def appendleft(self, e):
         """ Add an element to the front of the deque."""
+        if self._maxlen and self._size == self._maxlen:
+            self.pop()
         if self._size == len(self._data):
             self._resize(2 * len(self._data))
         self._front = (self._front - 1) % len(self._data)
@@ -67,10 +70,13 @@ class ArrayDeque(object):
 
     def append(self, e):
         """ Add an element to the back of the deque."""
+        if self._maxlen and self._size == self._maxlen:
+            self.popleft()
         if self._size == len(self._data):
             self._resize(2 * len(self._data))
         last = (self._front + self._size - 1) % len(self._data)
-        self._data[last + 1] = e
+        avail = (last + 1) % len(self._data)
+        self._data[avail] = e
         self._size += 1
 
     def pop(self):
@@ -126,13 +132,15 @@ class ArrayDeque(object):
         if i > self._size // 2:
             for i in range(i, self._size - 1, 1):
                 avail = (self._front + i) % len(self._data)
-                self._data[avail] = self._data[avail + 1]
+                avail_next = (avail + 1) % len(self._data)
+                self._data[avail] = self._data[avail_next]
             last = (self._front + self._size - 1) % len(self._data)
             self._data[last] = None  # help gc
         else:
             for i in range(i, 0, -1):
                 avail = (self._front + i) % len(self._data)
-                self._data[avail] = self._data[avail - 1]
+                avail_pre = (avail - 1) % len(self._data)
+                self._data[avail] = self._data[avail_pre]
             self._data[self._front] = None  # help gc
             self._front += 1
         self._size -= 1
@@ -165,6 +173,7 @@ if __name__ == '__main__':
     print(d._data)
     print('first: {0:d}'.format(d[0]))
     print('last: {0:d}'.format(d[-1]))
+    print('size: {0:d}'.format(len(d)))
 
     for i in range(5):
         d.popleft()
@@ -173,12 +182,14 @@ if __name__ == '__main__':
     print(d._data)
     print('first: {0:d}'.format(d[0]))
     print('last: {0:d}'.format(d[-1]))
+    print('size: {0:d}'.format(len(d)))
 
     for i in range(20, 30):
         d.appendleft(i)
     print(d._data)
     print('first: {0:d}'.format(d[0]))
     print('last: {0:d}'.format(d[-1]))
+    print('size: {0:d}'.format(len(d)))
 
     for i in range(15):
         d.pop()
@@ -226,4 +237,10 @@ if __name__ == '__main__':
 
     d.clear()
     print(d._data)
+    print('size: {0:d}'.format(len(d)))
+
+    d = ArrayDeque(10)
+    for i in range(13):
+        d.append(i)
+        print(d._data)
 
