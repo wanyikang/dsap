@@ -19,8 +19,8 @@ class ArrayDeque(object):
         return self._size == 0
 
     def first(self):
-        """ Return (but do not remove) the element at the front of the queue.
-        raise Empty exception if the queue is empty.
+        """ Return (but do not remove) the element at the front of the deque.
+        raise Empty exception if the deque is empty.
         """
         if self.is_empty():
             raise Empty('Deque is empty!')
@@ -41,16 +41,18 @@ class ArrayDeque(object):
         """
         if self.is_empty():
             raise Empty('Deque is empty!')
+        rlt = self._data[self._front]
         self._data[self._front] = None
         self._front = (self._front + 1) % len(self._data)
         self._size -= 1
         # shrink the list
         if self._size <= len(self._data) // 4:
             self._resize(len(self._data) // 2)
+        return rlt
 
     def last(self):
-        """ Return (but do not remove) the element at the last of the queue.
-        raise Empty exception if the queue is empty.
+        """ Return (but do not remove) the element at the last of the deque.
+        raise Empty exception if the deque is empty.
         """
         if self.is_empty():
             raise Empty('Deque is empty!')
@@ -73,11 +75,13 @@ class ArrayDeque(object):
         if self.is_empty():
             raise Empty('Deque is empty!')
         last = (self._front + self._size - 1) % len(self._data)
+        rlt = self._data[last]
         self._data[last] = None
         self._size -= 1
         # shrink the list
         if self._size <= len(self._data) // 4:
             self._resize(len(self._data) // 2)
+        return rlt
 
     def _resize(self, cap):
         """ Resize to a new list of capacity `cap`."""
