@@ -47,6 +47,27 @@ class SinglyLinkedList(object):
             self._tail = tmp
         self._size += 1
 
+    def _before(self, x):
+        """ Return the None that preceding element x. If size of linked list
+        is less than 2, then return None. If x is None, then return None.
+        """
+        if self._size < 2:
+            return None
+        if x is self._head:
+            return None
+        find = False
+        walk = self._head
+        while walk._next is not None:
+            prev = walk
+            walk = walk._next
+            if walk is x:
+                find = True
+                break
+        if find:
+            return prev
+        else:
+            return None
+
     def traverse_print(self):
         """ Traverse the linked list and print all the elements."""
         walk = self._head
@@ -68,4 +89,11 @@ if __name__ == '__main__':
     for i in range(15):
         sllist.remove_first()
     sllist.traverse_print()
+
+    walk = sllist._head
+    for i in range(4):
+        walk = walk._next
+
+    print(walk._element)
+    print(sllist._before(walk)._element)
 
