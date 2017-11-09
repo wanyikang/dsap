@@ -50,7 +50,7 @@ class SinglyLinkedList(object):
     def traverse_print(self):
         """ Traverse the linked list and print all the elements."""
         walk = self._head
-        for i in range(self._size):
+        while walk is not None:
             print('{0:d}'.format(walk._element))
             walk = walk._next
         print('\n')
