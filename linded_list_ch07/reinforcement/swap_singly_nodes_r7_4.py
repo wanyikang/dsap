@@ -5,17 +5,11 @@ class LinkedList(SinglyLinkedList):
 
     def swap(self, x, y):
         """ Swap the elements in the linked list, the target elements are
-        referenced by x and y. If size of linked list is less than 2, then do
-        nothing.
+        referenced by x and y. Assume the x and y are in this singly linked
+        list.
         """
-        if self._size < 2:
-            return
         bx = self._before(x)
         by = self._before(y)
-        if bx is None and x is not self._head:
-            return  # x is not in linked list
-        if by is None and y is not self._head:
-            return  # y is not is linked list
         nx = x._next
         ny = y._next
 
