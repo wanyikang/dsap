@@ -16,6 +16,26 @@ class SinglyLinkedList(object):
         self._tail = None
         self._size = 0
 
+    def __len__(self):
+        """ Return the length of the singly linked list."""
+        return self._size
+
+    def is_empty(self):
+        """ Return Ture if the list is empty."""
+        return self._size == 0
+
+    def head(self):
+        """ Return the head element of the singly linked list. If the list is
+        empty then return None.
+        """
+        return self._head
+
+    def tail(self):
+        """ Return the tail element of the singly linked list. If the list is
+        empty then return None.
+        """
+        return self._tail
+
     def add_first(self, e):
         """ Add an element to the first of the linked list."""
         self._head = self._Node(e, self._head)
