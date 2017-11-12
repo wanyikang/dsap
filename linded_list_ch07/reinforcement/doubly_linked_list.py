@@ -88,10 +88,10 @@ class DoublyLinkedList(object):
         """ Traverse the doubly linked list and print all the elements."""
         walk = self._header._next
         while walk is not None:
-            print('{0:d}'.format(walk._element))
-            walk = walk._next
             if walk is self._trailer:
                 break
+            print('{0:d}'.format(walk._element))
+            walk = walk._next
         print('\n')
 
 if __name__ == '__main__':
