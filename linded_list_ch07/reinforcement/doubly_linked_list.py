@@ -63,6 +63,9 @@ class DoublyLinkedList(object):
             raise Empty('the doubly linked list is empty')
         return self._delete_node(self._trailer._prev)
 
+    def _insert_between(self, e, predecessor, successor):
+        self._add_between(e, predecessor, successor)
+
     def _add_between(self, e, predecessor, successor):
         """ Add an element between predecessor and successor. Return the new
         created node."""
