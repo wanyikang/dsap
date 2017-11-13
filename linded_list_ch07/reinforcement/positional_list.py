@@ -74,6 +74,13 @@ class PositionalList(DoublyLinkedList):
             yield cursor.element()
             cursor = self.after(cursor)
 
+    def __reversed__(self):
+        """Generate a backward iteration of the elements of the list."""
+        cursor = self.last()
+        while cursor is not None:
+            yield cursor.element()
+            cursor = self.before(cursor)
+
     #------------------------------- mutators -------------------------------
     # override inherited version to return Position, rather than Node
     def _insert_between(self, e, predecessor, successor):
@@ -132,4 +139,8 @@ if __name__ == '__main__':
 
     pl.replace(pl.after(pl.after(pl.first())), 888)
     pl.traverse_print()
+
+    pl2 = reversed(pl)
+    for item in pl2:
+        print(item)
 
