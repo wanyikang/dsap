@@ -28,13 +28,13 @@ class SinglyLinkedList(object):
         """ Return the head element of the singly linked list. If the list is
         empty then return None.
         """
-        return self._head
+        return self._head._element
 
     def tail(self):
         """ Return the tail element of the singly linked list. If the list is
         empty then return None.
         """
-        return self._tail
+        return self._tail._element
 
     def add_first(self, e):
         """ Add an element to the first of the linked list."""
@@ -66,6 +66,17 @@ class SinglyLinkedList(object):
             self._tail._next = tmp
             self._tail = tmp
         self._size += 1
+
+    def cut(self, n):
+        """ Cut the singly linked list from head to n elements."""
+        walk = self._head
+        for _ in range(n - 1):
+            if walk:
+                walk = walk._next
+        if walk:
+            walk._next = None
+        self._size = min(self._size, n)
+        self._tail = walk
 
     def _before(self, x):
         """ Return the None that preceding element x. If size of linked list
