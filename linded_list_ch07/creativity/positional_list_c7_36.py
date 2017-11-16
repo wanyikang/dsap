@@ -100,7 +100,6 @@ class PositionalList(DoublyLinkedList):
 
     def add_after(self, p, e):
         """Insert element e into list after Position p and return new Position."""
-        print(p.element())
         original = self._validate(p)
         return self._insert_between(e, original, original._next)
 
@@ -140,7 +139,9 @@ if __name__ == '__main__':
     print(pl.before(pl.first()))
     print(pl.after(pl.last()))
 
-    pl.delete(pl.first())
+    e = pl.delete(pl.first())
+    print(pl)
+    pl.add_after(pl.first(), e)
     print(pl)
 
     pl.replace(pl.after(pl.after(pl.first())), 888)
