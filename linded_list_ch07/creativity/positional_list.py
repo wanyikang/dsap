@@ -67,6 +67,12 @@ class PositionalList(DoublyLinkedList):
         node = self._validate(p)
         return self._make_position(node._next)
 
+    def __len__(self):
+        return super(PositionalList, self).__len__()
+
+    def is_empty(self):
+        return super(PositionalList, self).is_empty()
+
     def __iter__(self):
         """Generate a forward iteration of the elements of the list."""
         cursor = self.first()
@@ -184,4 +190,7 @@ if __name__ == '__main__':
     q = pl.last()
     pl.swap(p, q)
     print(pl)
+
+    print('len: ', len(pl))
+    print('is_empty(): ', pl.is_empty())
 
