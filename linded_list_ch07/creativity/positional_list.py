@@ -1,4 +1,4 @@
-from reverse_doubly_list_c7_33 import DoublyLinkedList
+from doubly_linked_list import DoublyLinkedList
 
 class PositionalList(DoublyLinkedList):
     """A sequential container of elements allowing positional access."""

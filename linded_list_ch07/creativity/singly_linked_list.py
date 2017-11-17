@@ -112,15 +112,15 @@ if __name__ == '__main__':
     sllist = SinglyLinkedList()
     for i in range(10):
         sllist.add_first(i)
-    sllist.traverse_print()
+    print(sllist)
 
     for i in range(-1, -11, -1):
         sllist.add_last(i)
-    sllist.traverse_print()
+    print(sllist)
 
     for i in range(15):
         sllist.remove_first()
-    sllist.traverse_print()
+    print(sllist)
 
     walk = sllist._head
     for i in range(4):

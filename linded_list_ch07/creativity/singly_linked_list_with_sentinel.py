@@ -69,28 +69,29 @@ class SinglyLinkedList(object):
         self._tail = newnode
         self._size += 1
 
-    def traverse_print(self):
-        """ Traverse the linked list and print all the elements."""
+    def __repr__(self):
+        """ String representation of the singly linked list."""
+        s = ''
         walk = self._header._next
         while walk is not None:
-            print('{0:d}'.format(walk._element))
+            s += str(walk._element) + ','
             walk = walk._next
-        print('\n')
+        return s[:-1]
 
 if __name__ == '__main__':
     sllist = SinglyLinkedList()
     for i in range(10):
         sllist.add_first(i)
-    sllist.traverse_print()
+    print(sllist)
 
     for i in range(-1, -11, -1):
         sllist.add_last(i)
-    sllist.traverse_print()
+    print(sllist)
 
     for i in range(15):
         sllist.remove_first()
     print('head: {0:d}, tail: {1:d}'.format(sllist.head(), sllist.tail()))
-    sllist.traverse_print()
+    print(sllist)
 
     walk = sllist._header._next
     for i in range(4):

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from swap_positional_list_c7_34 import PositionalList
+from positional_list import PositionalList
 
 def find_sum_v_elements(pl, v):
     """ Find the elements in the positional list that sums to v.

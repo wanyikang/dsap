@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Obviously, the time asyptotic of bubble sort is O(n^2)
 from positional_list import PositionalList
 from random import shuffle
 
