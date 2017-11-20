@@ -99,6 +99,13 @@ class SinglyLinkedList(object):
         else:
             return None
 
+    def __iter__(self):
+        """ Generate a forward iteration of the elements of the list."""
+        walk = self._head
+        while walk is not None:
+            yield walk._element
+            walk = walk._next
+
     def __repr__(self):
         """ String representation of the singly linked list."""
         s = ''
