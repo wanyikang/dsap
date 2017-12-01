@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from singly_linked_list import SinglyLinkedList
+from _singly_linked_list import SinglyLinkedList
 from exception import Empty
 
 class LinkedQueue(SinglyLinkedList):
