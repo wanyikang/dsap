@@ -50,6 +50,14 @@ class LinkedBinaryTree(BinaryTree):
         """ Return Position instance for given node (or None if no node)."""
         return self.Position(self, node) if node is not None else None
 
+    def _count_subtree_nodes(self, p):
+        """ Count the nodes number of subtree rooted at p."""
+        count = 1
+        if not self.is_leaf(p):
+            for c in self.children(p):
+                count += self._count_subtree_nodes(c)
+        return count
+
     # constructor
     def __init__(self):
         """ Create an initially empty binary tree."""
@@ -160,6 +168,29 @@ class LinkedBinaryTree(BinaryTree):
         node._parent = node  # convention for deprecated node
         return node._element
 
+    def _delete_subtree(self, p):
+        """ Delete the subtree rooted at Position p.
+
+        :return : the element that had been stored at Position p, namely, the
+                  root element.
+        :raise : ValueError if Position p is invalid.
+        """
+        node = self._validate(p)
+        parent = node._parent
+        if not parent:  # p is root
+            self._root = None
+            self._size = 0
+        else:
+            cnum = self._count_subtree_nodes(p)
+            # setup node and parent and size
+            if parent._left is node:
+                parent._left = None
+            else:
+                parent._right = None
+            node._parent = None
+            self._size -= cnum
+        return p.element()
+
     def _attach(self, p, t1, t2):
         """ Attach trees t1 and t2, respectively, as the left and right
         subtrees of the external Position p. As a side effect, set t1 and t2 to
@@ -190,9 +221,9 @@ class LinkedBinaryTree(BinaryTree):
 
 if __name__ == '__main__':
     t = LinkedBinaryTree()
-    root = t._add_root(0)
-    l = t._add_left(root, 1)
-    r = t._add_right(root, 2)
+    rt = t._add_root(0)
+    l = t._add_left(rt, 1)
+    r = t._add_right(rt, 2)
 
     t1 = LinkedBinaryTree()
     root = t1._add_root(3)
@@ -208,4 +239,13 @@ if __name__ == '__main__':
 
     for item in t:
         print(item)
+    print('len: {0:d}'.format(len(t)))
+
+    p = t.left(t.left(t.root()))
+    t._delete_subtree(p)
+
+    print('after delete subtree:')
+    for item in t:
+        print(item)
+    print('len: {0:d}'.format(len(t)))
 
