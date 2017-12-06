@@ -65,6 +65,13 @@ class LinkedBinaryTree(BinaryTree):
         self._size = 0
 
     # public accessors
+    def __str__(self):
+        """ str representation of linked binary tree."""
+        s = ''
+        for item in self:
+            s += str(item)
+        return s
+
     def __len__(self):
         """ Return the total number of elements in the tree."""
         return self._size
