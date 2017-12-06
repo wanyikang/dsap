@@ -206,6 +206,10 @@ class LinkedBinaryTree(BinaryTree):
         # validate p and q
         pn = self._validate(p)
         qn = self._validate(q)
+        # check if p and q denote the same node
+        if p == q:
+            return
+
         # check if p and q is ancessor and descendent
         family = False
         for pos in self._subtree_preorder(p):
@@ -214,6 +218,7 @@ class LinkedBinaryTree(BinaryTree):
         for pos in self._subtree_preorder(q):
             if pos == p:
                 family = True
+
         # swap p and q
         pf = pn._parent
         qf = qn._parent

@@ -64,6 +64,7 @@ if __name__ == '__main__':
     # q = t.left(t.right(t.root()))
     q = t.left(t.right(t.left(t.root())))
     print('q: {0:s}'.format(q.element()))
-    t.swap(p, q)
+    # t.swap(p, q)
+    t.swap(q, q)
     print(t)
 
