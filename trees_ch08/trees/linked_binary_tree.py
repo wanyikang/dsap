@@ -198,6 +198,43 @@ class LinkedBinaryTree(BinaryTree):
             self._size -= cnum
         return p.element()
 
+    def _swap(self, p, q):
+        """ Swap subtrees represented by Position p and q in the same tree.
+        If p is a descentdent of q or vice versa, just swap the element of p
+        and q.
+        """
+        # validate p and q
+        pn = self._validate(p)
+        qn = self._validate(q)
+        # check if p and q is ancessor and descendent
+        family = False
+        for pos in self._subtree_preorder(p):
+            if pos == q:
+                family = True
+        for pos in self._subtree_preorder(q):
+            if pos == p:
+                family = True
+        # swap p and q
+        pf = pn._parent
+        qf = qn._parent
+        if family:  # p or q may be root
+            pn._element, qn._element = qn._element, pn._element
+        else:  # both p and q can not be root
+            pn._parent = qf
+            qn._parent = pf
+            if qf is pf:  # p and q is adjacent
+                pf._left, pf._right = pf._right,  pf._left
+            else:
+                if pf._left is pn:
+                    pf._left = qn
+                else:
+                    pf._right = qn
+                if qf._left is qn:
+                    qf._left = pn
+                else:
+                    qf._right = pn
+        return
+
     def _attach(self, p, t1, t2):
         """ Attach trees t1 and t2, respectively, as the left and right
         subtrees of the external Position p. As a side effect, set t1 and t2 to

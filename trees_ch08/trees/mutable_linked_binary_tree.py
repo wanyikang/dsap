@@ -19,6 +19,9 @@ class MutableLinkedBinaryTree(LinkedBinaryTree):
     def delete(self, p):
         return self._delete(p)
 
+    def swap(self, p, q):
+        return self._swap(p, q)
+
     def attach(self, p, t1, t2):
         self._attach(p, t1, t2)
 
@@ -54,5 +57,13 @@ def construct_tree(exp):
 
 if __name__ == '__main__':
     t = construct_tree('((((3+1)x3)/((9-5)+2))-((3x(7-4))+6))')
+    print(t)
+    # p = t.left(t.left(t.root()))
+    p = t.right(t.left(t.left(t.left(t.root()))))
+    print('p: {0:s}'.format(p.element()))
+    # q = t.left(t.right(t.root()))
+    q = t.left(t.right(t.left(t.root())))
+    print('q: {0:s}'.format(q.element()))
+    t.swap(p, q)
     print(t)
 
