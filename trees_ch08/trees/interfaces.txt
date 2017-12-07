@@ -1,0 +1,53 @@
+Tree:
+  # abstract method
+  root()
+  parent(p)
+  num_children(p)
+  children(p)
+  __len__()
+
+  # concrete method
+  is_root(p)
+  is_leaf(p)
+  is_empty()
+  depth(p)
+  height(p)
+  __iter__()
+  positions()
+  preorder()
+  postorder()
+  breadthfirst()
+
+BinaryTree:
+  # abstract method
+  left(p)
+  right(p)
+
+  # concrete method
+  sibling(p)
+  children()
+  inorder()
+
+  # overwriten method
+  positions()
+
+LinkedBinaryTree:
+  # concrete method
+  root()
+  parent(p)
+  num_children(p)
+  __len__()
+  __str__()
+  left(p)
+  right(p)
+
+  # nonpublic mutators
+  _add_root(e)
+  _add_left(p, e)
+  _add_right(p, e)
+  _replace(p, e)
+  _delete(p)
+  _delte_subtree(p)
+  _swap(p,q)
+  _attach(p, t1, t2)
+

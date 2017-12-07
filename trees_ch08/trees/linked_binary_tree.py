@@ -5,7 +5,7 @@ class LinkedBinaryTree(BinaryTree):
     """ Linked representation of a binary tree structure."""
 
     # nested classes
-    class _Node:
+    class _Node(object):
         """ Lightweight, nopublic class for storing a node."""
 
         # streamline memeory usage
@@ -194,7 +194,7 @@ class LinkedBinaryTree(BinaryTree):
                 parent._left = None
             else:
                 parent._right = None
-            node._parent = None
+            node._parent = node  # convention for deprecated node
             self._size -= cnum
         return p.element()
 
