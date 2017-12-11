@@ -26,7 +26,7 @@ class MutableLinkedBinaryTree(LinkedBinaryTree):
         self._attach(p, t1, t2)
 
 
-def construct_tree(exp):
+def construct_tree(exp, BinaryTree=MutableLinkedBinaryTree):
     """ Constuct a binary tree from arithmetic expression."""
     s = Stack()
     for c in exp:
@@ -36,15 +36,15 @@ def construct_tree(exp):
             right = s.pop()
             op = s.pop()
             left = s.pop()
-            t = MutableLinkedBinaryTree()
+            t = BinaryTree()
             root = t.add_root(op)
             if type(left) is not type(t):
-                t1 = MutableLinkedBinaryTree()
+                t1 = BinaryTree()
                 t1.add_root(left)
             else:
                 t1 = left
             if type(right) is not type(t):
-                t2 = MutableLinkedBinaryTree()
+                t2 = BinaryTree()
                 t2.add_root(right)
             else:
                 t2 = right
