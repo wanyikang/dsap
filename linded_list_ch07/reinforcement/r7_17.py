@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-# Note: not completed
+# NOTE: not completed
 
