@@ -81,7 +81,7 @@ def tokenize(raw):
             mark = i
     return rlt
 
-def build_expression_tree(tokens):
+def build_expression_tree(tokens, ET=ExpressionTree):
     """Returns an ExpressionTree based upon by a tokenized expression.
 
     tokens must be an iterable of strings representing a fully parenthesized
@@ -92,12 +92,12 @@ def build_expression_tree(tokens):
         if t in '+-x*/':                            # t is an operator symbol
             S.append(t)                               # push the operator symbol
         elif t not in '()':                         # consider t to be a literal
-            S.append(ExpressionTree(t))               # push trivial tree storing value
+            S.append(ET(t))               # push trivial tree storing value
         elif t == ')':       # compose a new tree from three constituent parts
             right = S.pop()                           # right subtree as per LIFO
             op = S.pop()                              # operator symbol
             left = S.pop()                            # left subtree
-            S.append(ExpressionTree(op, left, right)) # repush tree
+            S.append(ET(op, left, right)) # repush tree
         # we ignore a left parenthesis
     return S.pop()
 
