@@ -115,10 +115,10 @@ class Tree(object):
         """ Generate a postorder iteration of positions in subtree rooted
         at p.
         """
-        yield p
         for c in self.children(p):
             for other in self._subtree_postorder(c):
                 yield other
+        yield p
 
     def breadthfirst(self):
         """ Generate a breadth-first iteration of the positions of the tree."""

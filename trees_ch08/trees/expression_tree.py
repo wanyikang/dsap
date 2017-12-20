@@ -61,6 +61,9 @@ class ExpressionTree(LinkedBinaryTree):
             else:                          # treat 'x' or '*' as multiplication
                 return left_val * right_val
 
+    def postfix(self):
+        return self.postorder()
+
 def tokenize(raw):
     """ Token the raw string to ignore whitespace and to recognize multidigit
     number as a single token.
@@ -102,7 +105,11 @@ def build_expression_tree(tokens, ET=ExpressionTree):
     return S.pop()
 
 if __name__ == '__main__':
-    ts = tokenize('(15 - ((((31 + 1) x3) / ((9-5)+2))-((3x(7-4))+6)))')
+    ts = tokenize('(((5+2)*(8-3))/4)')
     big = build_expression_tree(ts)
     print('big = {0:f}'.format(big.evaluate()))
+    pf = []
+    for item in big.postfix():
+        pf.append(item.element())
+    print(pf)
 
