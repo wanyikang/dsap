@@ -268,6 +268,33 @@ class LinkedBinaryTree(BinaryTree):
             t2._size = 0
         return
 
+    def _force_attach(self, p, t1, t2):
+        """ Attach trees t1 and t2, respectively, as the left and right
+        subtrees of the Position p. As a side effect, set t1 and t2 to
+        empty. If p already has left or right subtree, then the left or right
+        subtree will be lost.
+
+        :raise : TypeError if trees t1 and t2 do not match type of this tree.
+        :raise : ValueError if Position p is invalid or not external.
+        """
+        node = self._validate(p)
+        if not type(self) is type(t1) is type(t2):  # 3 trees must be same type
+            raise TypeError('Tree types must match')
+        self._size += len(t1) + len(t2)
+        # attach t1
+        if not t1.is_empty():
+            t1._root._parent = node
+            node._left = t1._root
+            t1._root = None  # set t1 to empty
+            t1._size = 0
+        # attach t2
+        if not t2.is_empty():
+            t2._root._parent = node
+            node._right = t2._root
+            t2._root = None  # set t2 to empty
+            t2._size = 0
+        return
+
 if __name__ == '__main__':
     t = LinkedBinaryTree()
     rt = t._add_root(0)

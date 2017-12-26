@@ -58,13 +58,13 @@ class Tree(object):
         if self.is_root(p):
             return 0
         else:
-            return 1 + self.depth(parent(p))
+            return 1 + self.depth(self.parent(p))
 
-    def _height1(self):  # works, but O(n^2) worst-case time
+    def _height1(self, p):  # works, but O(n^2) worst-case time
         """ Return the height of the tree."""
         return max(self.depth(p) for p in self.positions() if self.is_leaf(p))
 
-    def _height2(self):  # time is linear in size of subtree
+    def _height2(self, p):  # time is linear in size of subtree
         """ Return the height of the subtree rooted at Position p."""
         if self.is_leaf(p):
             return 0
