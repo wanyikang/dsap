@@ -14,6 +14,9 @@ class PriorityQueueBase(object):
         def __lt__(self, other):
             return self._key < other._key  # compare items based on their keys
 
+        def __le__(self, other):
+            return self._key <= other._key  # compare items based on their keys
+
         def __repr__(self):
             return '({0},{1})'.format(self._key, self._value)
 
