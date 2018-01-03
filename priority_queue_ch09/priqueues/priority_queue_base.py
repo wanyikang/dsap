@@ -24,7 +24,7 @@ class PriorityQueueBase(object):
         """ Return the number of items in the priority queue."""
         raise NotImplementedError('must be implemented by subclass')
 
-    def is_empty(self,):
+    def is_empty(self):
         """ Return Ture if the priority queue is empty."""
         return len(self) == 0
 
@@ -42,7 +42,7 @@ class PriorityQueueBase(object):
     def remove_min(self):
         """ Remove and return (k,v) tuple with minimum key.
 
-        raise Empty excetion if empty
+        raise Empty exception if empty.
         """
         raise NotImplementedError('must be implemented by subclass')
 
