@@ -73,7 +73,7 @@ class HeapPriorityQueue(PriorityQueueBase):
     def _up_heap(self, j):
         """ Bubbling the element identified by `j` up."""
         p = self._parent(j)
-        if self._data[j] < self._data[p]:
+        if j > 0 and self._data[j] < self._data[p]:
             self._swap(j, p)
             self._up_heap(p)
 
