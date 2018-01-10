@@ -6,9 +6,11 @@ class HeapPriorityQueue(PriorityQueueBase):
     """ A min-oriented priority queue implemented with a heap."""
 
     # public methods
-    def __init__(self):
+    def __init__(self, contents=()):
         """ Construct an empty priority queue."""
-        self._data = []
+        self._data = [self._Item(k, v) for k,v in contents]  # empty by default
+        if len(self._data) > 1:
+            self._heapify()
 
     def __len__(self):
         """ Return the number of items in the priority queue."""
@@ -89,6 +91,12 @@ class HeapPriorityQueue(PriorityQueueBase):
                 self._swap(j, small)
                 self._down_heap(small)
         return
+
+    def _heapify(self):
+        """ Do a bottom-up heap construction."""
+        start = self._parent(len(self) - 1)
+        for i in range(start, -1, -1):
+            self._down_heap(i)
 
 if __name__ == '__main__':
     pq = HeapPriorityQueue()

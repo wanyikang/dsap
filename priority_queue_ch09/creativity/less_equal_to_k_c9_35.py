@@ -27,9 +27,7 @@ if __name__ == '__main__':
     elms = [(2,'B'), (5,'A'), (4,'C'), (15,'K'), (9,'F'), (7,'Q'), (6,'Z'),
             (16,'X'), (25, 'J'), (14,'E'), (12,'H'), (11,'S'), (8,'W'),
             (20,'B'), (10,'L')]
-    pq = PriorityQueue()
-    for item in elms:
-        pq.add(item[0], item[1])
+    pq = PriorityQueue(elms)
     lteqs = pq.less_equal(7)
     print(lteqs)
 
