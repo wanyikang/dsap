@@ -61,6 +61,19 @@ class HeapPriorityQueue(PriorityQueueBase):
         self._down_heap(0)
         return small
 
+    def heapreplace(self, key, value):
+        """ Pop and return the smallest key-value pair from the heap, and also
+        push the new pair.
+
+        Raise IndexError if the heap is empty.
+        """
+        if self.is_empty():
+            raise IndexError('Priority queue is empty')
+        small = self.min()
+        self._data[0]._key = key
+        self._data[0]._value = value
+        return small
+
     # utils
     def _parent(self, j):
         """ Return the index of parent."""
@@ -129,4 +142,6 @@ if __name__ == '__main__':
     print('min: {0}, len: {1}'.format(pq.min(), len(pq)))
     item = pq.heappushpop(4, 'lcq')
     print('heappushpop: {0}'.format(item))
+    item = pq.heapreplace(3, 'xxx')
+    print('heapreplace: {0}'.format(item))
 
