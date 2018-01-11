@@ -47,6 +47,20 @@ class HeapPriorityQueue(PriorityQueueBase):
         self._down_heap(0)
         return (item._key, item._value)
 
+    def heappushpop(self, key, value):
+        """ Push (`key`, `value`) on the heap, then pop and return the smallest
+        key-value pair from the heap."""
+        if self.is_empty():
+            return (key, value)
+        small = self.min()
+        if key < small[0]:
+            return (key, value)
+        # should return a different pair
+        self._data[0]._key = key
+        self._data[0]._value = value
+        self._down_heap(0)
+        return small
+
     # utils
     def _parent(self, j):
         """ Return the index of parent."""
@@ -113,4 +127,6 @@ if __name__ == '__main__':
     pq.remove_min()
     # pq.remove_min()
     print('min: {0}, len: {1}'.format(pq.min(), len(pq)))
+    item = pq.heappushpop(4, 'lcq')
+    print('heappushpop: {0}'.format(item))
 
