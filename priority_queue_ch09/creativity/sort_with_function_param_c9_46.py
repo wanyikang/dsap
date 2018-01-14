@@ -22,9 +22,7 @@ def make_key(k):
     return int(k)
 
 if __name__ == '__main__':
-    l = []
-    for i in range(10):
-        l.append(i)
+    l = [i for i in range(10)]
     shuffle(l)
     pl = PositionalList()
     for item in l:

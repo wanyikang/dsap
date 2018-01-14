@@ -17,9 +17,7 @@ def selection_sort(l):
     return
 
 if __name__ == '__main__':
-    l = []
-    for i in range(10):
-        l.append(i)
+    l = [i for i in range(10)]
     shuffle(l)
     print(l)
     selection_sort(l)
