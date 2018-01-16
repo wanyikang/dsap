@@ -72,6 +72,7 @@ class HeapPriorityQueue(PriorityQueueBase):
         small = self.min()
         self._data[0]._key = key
         self._data[0]._value = value
+        self._down_heap(0)
         return small
 
     # utils
@@ -126,22 +127,18 @@ class HeapPriorityQueue(PriorityQueueBase):
             self._down_heap(i)
 
 if __name__ == '__main__':
-    pq = HeapPriorityQueue()
-    pq.add(0, 'richard')
-    pq.add(0, 'wanyikang')
-    pq.add(1, 'hsj')
-    pq.add(2, 'mbs')
-    pq.add(3, 'zzw')
+    l = [(0, 'richard'), (0, 'wanyikang'), (1, 'hsj'), (2, 'mbs'), (3, 'zzw')]
+    pq = HeapPriorityQueue(l)
     print('min: {0}, len: {1}'.format(pq.min(), len(pq)))
     pq.remove_min()
     print('min: {0}, len: {1}'.format(pq.min(), len(pq)))
     pq.remove_min()
     pq.remove_min()
-    pq.remove_min()
-    # pq.remove_min()
     print('min: {0}, len: {1}'.format(pq.min(), len(pq)))
     item = pq.heappushpop(4, 'lcq')
-    print('heappushpop: {0}'.format(item))
-    item = pq.heapreplace(3, 'xxx')
-    print('heapreplace: {0}'.format(item))
+    print('heappushpop: {0}, min: {1}, len" {2}'.format(
+        item, pq.min(), len(pq)))
+    item = pq.heapreplace(5, 'xxx')
+    print('heappushpop: {0}, min: {1}, len" {2}'.format(
+        item, pq.min(), len(pq)))
 
