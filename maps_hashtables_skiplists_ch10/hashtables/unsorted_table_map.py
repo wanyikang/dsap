@@ -44,6 +44,11 @@ class UnsortedTableMap(MapBase):
         for item in self._table:
             yield item._key  # yield the KEY
 
+    def items(self):
+        """ Return a set-like view of (k,v) tuples for all entries."""
+        for item in self._table:
+            yield (item._key, item._value)
+
 if __name__ == '__main__':
     unsort_map = UnsortedTableMap()
     for i in range(10):
