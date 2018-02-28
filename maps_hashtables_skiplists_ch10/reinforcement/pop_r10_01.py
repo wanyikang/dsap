@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path.append('..')
-from map_base import MapBase
+from hashtables.map_base import MapBase
 
 class MyMap(MapBase):
     """ For give a concrete implementation of pop method."""

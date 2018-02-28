@@ -2,7 +2,7 @@
 # If directly applied to the UnsortedTableMap, the running time is O(n^2).
 import sys
 sys.path.append('..')
-from map_base import MapBase
+from hashtables.map_base import MapBase
 
 class MyMap(MapBase):
     """ For give a concrete implementation of items method."""
