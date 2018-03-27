@@ -35,6 +35,10 @@ class LinkedBinaryTree(BinaryTree):
             """
             return type(other) is type(self) and other._node is self._node
 
+        def __hash__(self):
+            """ Return the hash code of this Position."""
+            return hash(id(self._node))
+
     # utility methods
     def _validate(self, p):
         """ Return associated node, if position is valid."""

@@ -22,6 +22,10 @@ class ArrayBinaryTree(BinaryTree):
             location."""
             return type(other) is type(self) and other._index == self._index
 
+        def __hash__(self):
+            """ Return hash code of this Position."""
+            return hash(self._index)
+
     # utility methods
     def _validate(self, p):
         """ Return associated index, if position is valid."""
