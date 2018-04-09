@@ -44,6 +44,46 @@ class TreeMap(LinkedBinaryTree, MapBase):
             walk = self.right(walk)
         return walk
 
+    # balancing method
+    def _relink(self, parent, child, make_left_child):
+        """ Relink parent node with child node (we allow child to be None)."""
+        if make_left_child:
+            parent._left = child
+        else:
+            parent._right = child
+        if child is not None:
+            child._parent = parent
+
+    def _rotate(self, p):
+        """ Rotate Position p above its parent."""
+        x = p._node
+        y = x._parent  # we assume this exists
+        z = y._parent  # grandparent (possible None)
+        if z is None:
+            self._root = x  # x becomes root
+            x._parent = None
+        else:
+            self._relink(z, x, z._left == y)  # x becomes a direct child of z
+        # now rotate x and y, including transfer of middle subtree
+        if x == y._left:  # split the problem into two situations
+            self._relink(y, x._right, True)
+            self._relink(x, y, False)
+        else:
+            self._relink(y, x._left, False)
+            self.(x, y, True)
+
+    def _restructure(self, x):
+        """ Perform trinode restructure of Position x with parent/grandparent."""
+        y = self.parent(x)
+        z = self.parent(y)
+        if (x == self.right(y)) ==  (y == self.right(z)):  # match alignments
+            self._rotate(y)
+            return y  # y is new subtree root
+        else:  # opposite alignments
+            self._rotate(x)
+            self._rotate(x)
+            return x  # x is new subtree root
+
     # public methods
     def first(self):
         """ Return the first Position in the tree (or None if empty)."""
