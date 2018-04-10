@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from trees.linked_binary_tree import LinkedBinaryTree
-from map_base import MapBase
+from hashtables.map_base import MapBase
 
 class TreeMap(LinkedBinaryTree, MapBase):
     """ Sorted map implementation using a binary search tree."""
@@ -70,7 +70,7 @@ class TreeMap(LinkedBinaryTree, MapBase):
             self._relink(x, y, False)
         else:
             self._relink(y, x._left, False)
-            self.(x, y, True)
+            self._relink(x, y, True)
 
     def _restructure(self, x):
         """ Perform trinode restructure of Position x with parent/grandparent."""
